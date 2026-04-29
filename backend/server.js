@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 const helmet = require('helmet');
 const { rateLimit } = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -72,11 +73,11 @@ app.use('/api/v1/transactions', require('./routes/transactions'));
 app.use('/api/v1/reports', require('./routes/reports'));
 app.use('/api/v1/settings', require('./routes/settings'));
 
-// Default Route
-app.get('/', (req, res) => {
-  res.status(200).json({ status: 'success', message: 'Library API is running' });
-});
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
+  });
 // Global Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
