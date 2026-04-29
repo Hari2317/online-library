@@ -73,11 +73,11 @@ app.use('/api/v1/transactions', require('./routes/transactions'));
 app.use('/api/v1/reports', require('./routes/reports'));
 app.use('/api/v1/settings', require('./routes/settings'));
 
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
-  });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 // Global Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
