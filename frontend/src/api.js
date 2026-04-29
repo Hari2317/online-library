@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://online-library-r7u8.onrender.com//api/v1',
+  baseURL: 'https://online-library-r7u8.onrender.com/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },
